@@ -10,9 +10,11 @@ Perpetual Chess: a dependency-free vanilla HTML/CSS/JS chess game (playable dire
 
 **Run the web version**: open `index.html` directly in a browser. No server, no build step.
 
-**After editing `index.html` / `style.css` / `script.js`**, the Android app reads from `www/`, not the project root — these are a manual mirror, not a symlink:
+**Live web deployment**: hosted on GitHub Pages at `https://auguste92.github.io/Perpetual-Chess/`, served directly from the `main` branch root (Settings → Pages → Deploy from a branch → `main` / root) — no build step, no Actions workflow. `.nojekyll` at the repo root skips GitHub's default Jekyll processing since this is plain static HTML/CSS/JS. `manifest.json` + `icon-192.png`/`icon-512.png` make it installable as a home-screen app on both Android and iOS (`display: standalone`); update these together with `index.html` if the app name/icon/theme color ever changes.
+
+**After editing `index.html` / `style.css` / `script.js` / `manifest.json` / the icon PNGs**, the Android app reads from `www/`, not the project root — these are a manual mirror, not a symlink:
 ```powershell
-Copy-Item "index.html","style.css","script.js" -Destination "www\" -Force
+Copy-Item "index.html","style.css","script.js","manifest.json","icon-192.png","icon-512.png" -Destination "www\" -Force
 npx cap sync android
 ```
 
