@@ -1,0 +1,6 @@
+node_modules/
+
+# Release-signing keystore — irreplaceable once the app is live on the Play
+# Store; never let this or its password file leave this machine.
+android/keystore/
+android/keystore.properties

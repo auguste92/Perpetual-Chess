@@ -1,0 +1,104 @@
+:root {
+  --line: rgba(255, 255, 255, 0.9);
+  --fill-select: rgba(255, 255, 255, 0.18);
+  --fill-move: rgba(255, 255, 255, 0.9);
+  --fill-capture: rgba(255, 255, 255, 0.85);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  overflow: hidden;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.scoreboard {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  font-size: 2.4rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.scoreboard .label {
+  font-size: 1.95rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.scoreboard span + .label {
+  margin-left: 30px;
+}
+
+.board {
+  --sq: min(11.5vw, calc((100vh - 110px) / 8), 72px);
+  display: grid;
+  grid-template-columns: repeat(8, var(--sq));
+  grid-template-rows: repeat(8, var(--sq));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.square {
+  position: relative;
+  width: var(--sq);
+  height: var(--sq);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.square.selected::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--fill-select);
+}
+
+.square .dot {
+  position: absolute;
+  width: 22%;
+  height: 22%;
+  border-radius: 50%;
+  background: var(--fill-move);
+  pointer-events: none;
+}
+
+.square .ring {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  border: 2px solid var(--fill-capture);
+  pointer-events: none;
+}
+
+.piece-icon {
+  width: calc(var(--sq) * 0.6);
+  height: calc(var(--sq) * 0.6);
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
